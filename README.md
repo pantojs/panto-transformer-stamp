@@ -7,8 +7,13 @@ Timestamp transformer for panto.
 ```js
 panto.loadTransformer('stamp');
 
-panto.pick('**/*.js').pipe(panto.read()).pipe(panto.stamp()).end();
+panto.pick('**/*.js').pipe(panto.read()).pipe(panto.stamp({
+    ignoreError: true
+})).end();
 ```
+
+## options
+ - ignoreError: if fail when error
 
 [npm-url]: https://npmjs.org/package/panto-transformer-stamp
 [downloads-image]: http://img.shields.io/npm/dm/panto-transformer-stamp.svg

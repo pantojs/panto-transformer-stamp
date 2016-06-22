@@ -12,7 +12,9 @@
 'use strict';
 const Transformer = require('panto-transformer');
 
-const {contentstamp} = require('antiaris-filestamp');
+const {
+    contentstamp
+} = require('filestamp');
 
 class StampTransformer extends Transformer {
     _transform(file) {
@@ -21,16 +23,20 @@ class StampTransformer extends Transformer {
             content
         } = file;
 
-        let filepath = filename;
-
         return new Promise(resolve => {
-            let {
-                filename
-            } = contentstamp.sync(content, filepath);
-
-            resolve(panto.util.extend(file, {
-                stamped: filename
-            }));
+            contentstamp(content, filename, (err, result) => {
+                if (err) {
+                    if (this.options.ignoreError) {
+                        panto.log.warn(`StampTransform warnning in ${filename}: ${err.message}`);
+                    } else {
+                        reject(err);
+                    }
+                } else {
+                    resolve(panto.util.extend(file, {
+                        stamp: result.filename
+                    }));
+                }
+            });
         });
     }
 }
