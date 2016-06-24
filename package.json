@@ -1,10 +1,10 @@
 {
   "name": "panto-transformer-stamp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Timestamp transformer for panto",
   "main": "index.js",
   "scripts": {
-    "test": "eslint index.js"
+    "test": "eslint index.js && mocha"
   },
   "repository": {
     "type": "git",
@@ -29,6 +29,6 @@
     "panto-transformer": "^0.1.1"
   },
   "devDependencies": {
-    "eslint": "^2.13.1"
+    "panto": "0.0.6"
   }
 }

@@ -23,11 +23,19 @@ class StampTransformer extends Transformer {
             content
         } = file;
 
-        return new Promise(resolve => {
+        const {
+            ignoreError,
+            isSilent
+        } = this.options;
+
+        return new Promise((resolve, reject) => {
             contentstamp(content, filename, (err, result) => {
                 if (err) {
-                    if (this.options.ignoreError) {
-                        panto.log.warn(`StampTransform warnning in ${filename}: ${err.message}`);
+                    if (ignoreError) {
+                        if (!isSilent) {
+                            panto.log.warn(`StampTransform warnning in ${filename}: ${err.message}`);
+                        }
+                        resolve(file);
                     } else {
                         reject(err);
                     }
