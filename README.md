@@ -6,10 +6,10 @@ Timestamp transformer for panto.
 ```js
 panto.loadTransformer('stamp');
 
-panto.pick('**/*.js').pipe(panto.read()).pipe(panto.stamp({
+panto.pick('**/*.js').read().stamp({
     ignoreError: true,
     isSilent: true
-})).end();
+});
 ```
 
 ## options
