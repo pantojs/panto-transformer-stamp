@@ -6,8 +6,8 @@
  * 2016-06-22[18:25:56]:revised
  *
  * @author yanni4night@gmail.com
- * @version 1.0.0
- * @since 1.0.0
+ * @version 0.2.4
+ * @since 0.1.0
  */
 'use strict';
 const Transformer = require('panto-transformer');
@@ -40,7 +40,7 @@ class StampTransformer extends Transformer {
                         reject(err);
                     }
                 } else {
-                    resolve(panto.util.extend(file, {
+                    resolve(panto._.extend(file, {
                         stamp: result.filename
                     }));
                 }
